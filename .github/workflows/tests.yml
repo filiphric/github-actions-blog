@@ -14,7 +14,9 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           start: npm start
-          record: true
-          parallel: true
+          # record: true
+          # parallel: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          SPLIT: ${{ strategy.job-total }}
+          SPLIT_INDEX: ${{ strategy.job-index }}
