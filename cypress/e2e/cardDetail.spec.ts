@@ -5,7 +5,7 @@ beforeEach(() => {
     .addCardApi({ name: 'new card' });
 });
 
-it.skip('card detail actions', function () {
+it('card detail actions', function () {
 
   const boardId = this.board.id
   const cardId = this.card.id
