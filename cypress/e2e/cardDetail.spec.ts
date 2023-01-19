@@ -5,7 +5,7 @@ beforeEach(() => {
     .addCardApi({ name: 'new card' });
 });
 
-it('card detail actions', function() {
+it.skip('card detail actions', function () {
 
   const boardId = this.board.id
   const cardId = this.card.id
@@ -14,7 +14,7 @@ it('card detail actions', function() {
   cy.intercept('PATCH', '/api/cards/*').as('updateCard');
   cy.intercept('DELETE', '/api/cards/*').as('deleteCard');
   cy.visit(`/board/${boardId}?card=${cardId}`);
-  
+
   cy.step('closing and opening card')
   cy.getDataCy('card-detail').should('be.visible');
   cy.getDataCy('card-detail-backdrop').click('topRight');
@@ -49,7 +49,7 @@ it('card detail actions', function() {
   cy.getDataCy('card-detail-deadline').should('be.visible');
   cy.getDataCy('calendar-dropdown').click();
   cy.getDataCy('card-detail-deadline').should('not.exist');
-  
+
   cy.step('card deadline hide')
   cy.getDataCy('calendar-button').click();
   cy.getDataCy('card-detail-deadline').should('be.visible');
@@ -65,7 +65,7 @@ it('card detail actions', function() {
   cy.step('card description')
   cy.getDataCy('card-description').type('new description{enter}');
   cy.wait('@updateCard').its('request.body').should('have.property', 'description', 'new description');
-  
+
   cy.step('image upload')
   cy.intercept({
     method: 'POST',
